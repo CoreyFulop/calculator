@@ -28,11 +28,6 @@ let displayValue = 0;
 
 let display = document.querySelector(".display");
 
-// const numberButtons = document.querySelectorAll(".number");
-// numberButtons.forEach(function (button) {
-//     button.addEventListener("click", updateDisplayValue);
-// });
-
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(button => button.addEventListener("click", updateDisplayValue));
 
