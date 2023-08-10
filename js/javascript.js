@@ -19,3 +19,7 @@ function divide(a, b) {
 let numberOne = 0;
 let operator = null;
 let numberTwo = 0;
+
+function operate(a, b, operation) {
+    return operation(a, b);
+}
