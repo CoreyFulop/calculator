@@ -16,26 +16,50 @@ function divide(a, b) {
     return a / b;
 }
 
-let numberOne = 0;
+let numberOne = null;
 let operator = null;
-let numberTwo = 0;
+let numberTwo = null;
 
 function operate(a, b, operation) {
-    return operation(a, b);
+    return window[operation](+a, +b);
 }
 
 let displayValue = 0;
 
+let clearDisplay = false;
+
 let display = document.querySelector(".display");
 
-const numberButtons = document.querySelectorAll(".number");
+const numberButtons = Array.from(document.querySelectorAll(".number"));
 numberButtons.forEach(button => button.addEventListener("click", updateDisplayValue));
 
 function updateDisplayValue(e) {
+    if (clearDisplay == true) {
+        displayValue = "";
+        clearDisplay = false;
+    }
     let targetValue = e.target.id;
     displayValue += targetValue;
-    if (displayValue[0] == "0") {
+    if (displayValue[0] == "0" && displayValue[1] != ".") {
         displayValue = displayValue.slice(1);
     }
     display.textContent = displayValue;
+}
+
+const primaryOperations = Array.from(document.querySelectorAll(".primary"));
+primaryOperations.forEach(operation => operation.addEventListener("click", primaryLogic));
+
+function primaryLogic(e) {
+    if (numberOne == null) {
+        numberOne = displayValue;
+        operator = e.target.id;
+        clearDisplay = true;
+    } else {
+        numberTwo = displayValue;
+        displayValue = operate(numberOne, numberTwo, operator);
+        display.textContent = displayValue;
+        numberOne = displayValue;
+        operator = e.target.id;
+        clearDisplay = true;
+    }
 }
