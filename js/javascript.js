@@ -51,15 +51,21 @@ primaryOperations.forEach(operation => operation.addEventListener("click", prima
 
 function primaryLogic(e) {
     if (numberOne == null) {
-        numberOne = displayValue;
-        operator = e.target.id;
-        clearDisplay = true;
+        saveNewValue(e);
     } else {
-        numberTwo = displayValue;
-        displayValue = operate(numberOne, numberTwo, operator);
-        display.textContent = displayValue;
-        numberOne = displayValue;
-        operator = e.target.id;
-        clearDisplay = true;
+        calculateNewValue();
+        saveNewValue(e);
     }
+}
+
+function saveNewValue(e) {
+    numberOne = displayValue;
+    operator = e.target.id;
+    clearDisplay = true;
+}
+
+function calculateNewValue() {
+    numberTwo = displayValue;
+    displayValue = operate(numberOne, numberTwo, operator);
+    display.textContent = displayValue;
 }
