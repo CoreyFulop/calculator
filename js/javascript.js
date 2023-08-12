@@ -17,7 +17,7 @@ function divide(a, b) {
 }
 
 let numberOne = null;
-let operator = null;
+let operator = "add";
 let numberTwo = null;
 
 function operate(a, b, operation) {
@@ -67,5 +67,10 @@ function saveNewValue(e) {
 function calculateNewValue() {
     numberTwo = displayValue;
     displayValue = operate(numberOne, numberTwo, operator);
-    display.textContent = displayValue;
+    display.textContent = displayValue;    
 }
+
+const equals = document.querySelector("#equals");
+equals.addEventListener("click", calculateNewValue);
+
+// fix repeated equals
