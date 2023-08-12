@@ -85,3 +85,16 @@ function calculateNewValue(e) {
 
 const equals = document.querySelector("#equals");
 equals.addEventListener("click", calculateNewValue);
+
+const plusMinus = document.querySelector("#plus-minus");
+plusMinus.addEventListener("click", changeSign);
+
+function changeSign() {
+    if (displayValue > 0) {
+        displayValue = `${-displayValue}`;
+        display.textContent = displayValue;
+    } else if (displayValue < 0) {
+        displayValue = displayValue.slice(1);
+        display.textContent = displayValue;
+    }
+}
