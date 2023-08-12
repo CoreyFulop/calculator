@@ -53,7 +53,7 @@ function primaryLogic(e) {
     if (numberOne == null) {
         saveNewValue(e);
     } else {
-        calculateNewValue();
+        calculateNewValue(e);
         saveNewValue(e);
     }
 }
@@ -62,15 +62,26 @@ function saveNewValue(e) {
     numberOne = displayValue;
     operator = e.target.id;
     clearDisplay = true;
+    continueCalc = true;
 }
 
-function calculateNewValue() {
-    numberTwo = displayValue;
-    displayValue = operate(numberOne, numberTwo, operator);
-    display.textContent = displayValue;    
+let continueCalc = true;
+
+function calculateNewValue(e) {
+    if (e.target.id != "equals") {
+        continueCalc = true;
+    }
+    if (continueCalc) {
+        numberTwo = displayValue;
+        displayValue = operate(numberOne, numberTwo, operator);
+        display.textContent = displayValue;
+        if (e.target.id == "equals") {
+            continueCalc = false;
+            numberOne = null;
+            clearDisplay = true;
+        }
+    }    
 }
 
 const equals = document.querySelector("#equals");
 equals.addEventListener("click", calculateNewValue);
-
-// fix repeated equals
