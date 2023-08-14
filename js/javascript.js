@@ -50,6 +50,9 @@ function updateDisplayValue(e) {
         targetValue = "";
     }
     displayValue += targetValue;
+    if (displayValue.length > 10) {
+        displayValue = displayValue.slice(0, -1);
+    }
     if (displayValue[0] == "0" && displayValue[1] != ".") {
         displayValue = displayValue.slice(1);
     }
