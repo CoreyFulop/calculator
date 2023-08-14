@@ -38,7 +38,7 @@ function updateDisplayValue(e) {
         displayValue = "";
         clearDisplay = false;
     }
-    let targetValue = e.target.id;
+    let targetValue = e.target.id; // just below here
     displayValue += targetValue;
     if (displayValue[0] == "0" && displayValue[1] != ".") {
         displayValue = displayValue.slice(1);
@@ -95,6 +95,25 @@ function changeSign() {
         display.textContent = displayValue;
     } else if (displayValue < 0) {
         displayValue = displayValue.slice(1);
+        display.textContent = displayValue;
+    }
+}
+
+const del = document.querySelector("#DEL");
+del.addEventListener("click", deleteCharacter);
+
+function deleteCharacter() {
+    if (displayValue.length > 2) {
+        displayValue = displayValue.slice(0,-1);
+        display.textContent = displayValue;
+    } else if (displayValue.length == 2 && displayValue[0] == "-") {
+        displayValue = "0";
+        display.textContent = displayValue;
+    } else if (displayValue.length == 2) {
+        displayValue = displayValue.slice(0,-1);
+        display.textContent = displayValue; 
+    } else {
+        displayValue = "0";
         display.textContent = displayValue;
     }
 }
