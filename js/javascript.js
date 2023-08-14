@@ -51,10 +51,13 @@ function updateDisplayValue(e) {
     }
     displayValue += targetValue;
     if (displayValue.length > 10) {
-        displayValue = displayValue.slice(0, -1);
+        displayValue = displayValue.slice(0, 10);
     }
     if (displayValue[0] == "0" && displayValue[1] != ".") {
         displayValue = displayValue.slice(1);
+    }
+    if (displayValue = "pi") {
+        displayValue = Math.floor(Math.PI * 100000000)/100000000;
     }
     display.textContent = displayValue;
 }
