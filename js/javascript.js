@@ -35,7 +35,7 @@ numberButtons.forEach(button => button.addEventListener("click", updateDisplayVa
 
 function updateDisplayValue(e) {
     if (clearDisplay == true) {
-        displayValue = "";
+        displayValue = 0;
         clearDisplay = false;
     }
     let targetValue = e.target.id; // just below here
