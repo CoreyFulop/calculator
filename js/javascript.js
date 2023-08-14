@@ -56,8 +56,8 @@ function updateDisplayValue(e) {
     if (displayValue[0] == "0" && displayValue[1] != ".") {
         displayValue = displayValue.slice(1);
     }
-    if (displayValue = "pi") {
-        displayValue = Math.floor(Math.PI * 100000000)/100000000;
+    if (displayValue.includes("pi")) {
+        displayValue = (Math.floor(Math.PI * 100000000)/100000000).toString();
     }
     display.textContent = displayValue;
 }
@@ -89,8 +89,14 @@ function calculateNewValue(e) {
     }
     if (continueCalc) {
         numberTwo = displayValue;
-        displayValue = operate(numberOne, numberTwo, operator);
-        display.textContent = displayValue;
+        displayValue = operate(numberOne, numberTwo, operator); 
+        displayValue = displayValue.toString();
+        if (displayValue.length > 10) {
+            displayValue = displayValue.slice(0,10)
+            display.textContent = displayValue + "...";
+        } else {
+            display.textContent = displayValue;
+        }
         if (e.target.id == "equals") {
             continueCalc = false;
             numberOne = null;
