@@ -12,8 +12,15 @@ function multiply(a, b) {
     return a * b;
 }
 
+let divByZero = false;
+
 function divide(a, b) {
-    return a / b;
+    if (+b == 0) {
+        divByZero = true;
+        return divByZero;
+    } else {
+        return a / b;
+    }
 }
 
 let numberOne = null;
@@ -24,7 +31,7 @@ function operate(a, b, operation) {
     return window[operation](+a, +b);
 }
 
-let displayValue = 0;
+let displayValue = "0";
 
 let clearDisplay = false;
 
@@ -35,10 +42,13 @@ numberButtons.forEach(button => button.addEventListener("click", updateDisplayVa
 
 function updateDisplayValue(e) {
     if (clearDisplay == true) {
-        displayValue = 0;
+        displayValue = "0";
         clearDisplay = false;
     }
-    let targetValue = e.target.id; // just below here
+    let targetValue = e.target.id;
+    if (displayValue.includes(".") && targetValue == ".") {
+        targetValue = "";
+    }
     displayValue += targetValue;
     if (displayValue[0] == "0" && displayValue[1] != ".") {
         displayValue = displayValue.slice(1);
@@ -79,6 +89,10 @@ function calculateNewValue(e) {
             continueCalc = false;
             numberOne = null;
             clearDisplay = true;
+        }
+        if (divByZero) {
+            allClear();
+            display.textContent = "DIV BY ZERO!";
         }
     }    
 }
@@ -122,11 +136,12 @@ const ac = document.querySelector("#AC");
 ac.addEventListener("click", allClear);
 
 function allClear() {
-    let numberOne = null;
-    let operator = "add";
-    let numberTwo = null;
-    let displayValue = 0;
-    let clearDisplay = false;
-    let continueCalc = true;
-    display.textContent = "0123456789";
+    numberOne = null;
+    operator = "add";
+    numberTwo = null;
+    displayValue = "0";
+    clearDisplay = false;
+    continueCalc = true;
+    display.textContent = displayValue;
+    divByZero = false;
 }
