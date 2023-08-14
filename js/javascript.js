@@ -104,7 +104,8 @@ function calculateNewValue(e) {
         }
         if (divByZero) {
             allClear();
-            display.textContent = "DIV BY ZERO!";
+            display.textContent = "¯\\_(ツ)_/¯";
+            display.classList.add("special-class");
         }
     }    
 }
@@ -156,4 +157,5 @@ function allClear() {
     continueCalc = true;
     display.textContent = displayValue;
     divByZero = false;
+    display.classList.remove("special-class");
 }
