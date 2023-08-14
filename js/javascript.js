@@ -117,3 +117,16 @@ function deleteCharacter() {
         display.textContent = displayValue;
     }
 }
+
+const ac = document.querySelector("#AC");
+ac.addEventListener("click", allClear);
+
+function allClear() {
+    let numberOne = null;
+    let operator = "add";
+    let numberTwo = null;
+    let displayValue = 0;
+    let clearDisplay = false;
+    let continueCalc = true;
+    display.textContent = "0123456789";
+}
